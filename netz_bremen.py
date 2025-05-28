@@ -1,5 +1,6 @@
 import pypsa
 import pandas as pd
+from geopy.distance import distance
 
 # Lastdaten laden
 lastdaten = pd.read_csv(
@@ -8,35 +9,55 @@ lastdaten = pd.read_csv(
     index_col="Zeit"
 )
 
-# Netzwerk initialisieren
 netz = pypsa.Network()
-
-# Zeithorizont setzen
 netz.set_snapshots(lastdaten.index)
 
-# Zwei Hochspannungs-Busse hinzufügen
-netz.add("Bus", "Knoten_1", v_nom=110)
-netz.add("Bus", "Knoten_2", v_nom=110)
+# Koordinaten der Busse
+knoten_koordinaten = {
+    "Knoten_1": (53.15, 8.85),  # Bremen Nord
+    "Knoten_2": (53.05, 8.80)   # Bremen Süd
+}
 
-# Leitung zwischen den Knoten (geschätzt: 10 km, grobe technische Werte)
+# Busse mit Koordinaten
+netz.add("Bus", "Knoten_1", v_nom=110, x=knoten_koordinaten["Knoten_1"][1], y=knoten_koordinaten["Knoten_1"][0])
+netz.add("Bus", "Knoten_2", v_nom=110, x=knoten_koordinaten["Knoten_2"][1], y=knoten_koordinaten["Knoten_2"][0])
+
+# Leitung
 netz.add("Line", "Leitung_K1_K2",
          bus0="Knoten_1",
          bus1="Knoten_2",
-         r=0.01,      # Ohm
-         x=0.1,       # Reaktanz in Ohm
-         s_nom=1000)  # Scheinleistung in MVA
+         r=0.01,
+         x=0.1,
+         s_nom=1000)
 
-# Last an beiden Knoten hinzufügen
+# Lasten
 netz.add("Load", "Last_K1", bus="Knoten_1", p_set=lastdaten["Last_Knoten_1"])
 netz.add("Load", "Last_K2", bus="Knoten_2", p_set=lastdaten["Last_Knoten_2"])
 
-# Slack-Generator am Knoten_1 zur Bilanzierung
+# Slack-Generator
 netz.add("Generator", "SlackGen", bus="Knoten_1", p_nom=1e6, control="Slack")
 
-# Nichtlinearer Lastfluss (AC) berechnen
+# Fiktive Generatoren mit Koordinaten
+generatoren = [
+    {"name": "Gen_A", "lat": 53.12, "lon": 8.84, "p_nom": 50},
+    {"name": "Gen_B", "lat": 53.04, "lon": 8.81, "p_nom": 75},
+    {"name": "Gen_C", "lat": 53.10, "lon": 8.83, "p_nom": 100}
+]
+
+# Funktion zur Knoten-Zuordnung per Entfernung
+def nächstgelegener_knoten(lat, lon):
+    return min(knoten_koordinaten.keys(),
+               key=lambda k: distance((lat, lon), knoten_koordinaten[k]).km)
+
+# Generatoren zuordnen und einfügen
+for gen in generatoren:
+    bus = nächstgelegener_knoten(gen["lat"], gen["lon"])
+    netz.add("Generator", gen["name"], bus=bus, p_nom=gen["p_nom"], p_set=gen["p_nom"])
+
+# Netzberechnung
 netz.pf()
 
-# Ergebnis anzeigen
+
 print("\n Netzmodell erfolgreich berechnet!\n")
 print("Leistungsfluss durch Leitung:")
 print(netz.lines_t.p0.head())
