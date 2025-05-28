@@ -1,17 +1,42 @@
 import pypsa
+import pandas as pd
 
+# Lastdaten laden
+lastdaten = pd.read_csv(
+    "Summenlastgang/Aufgeteilter_Summenlastgang.csv",
+    parse_dates=["Zeit"],
+    index_col="Zeit"
+)
+
+# Netzwerk initialisieren
 netz = pypsa.Network()
-netz.set_snapshots(["2025-01-01 00:00"])
 
-netz.add("Bus", "Bus1", v_nom=110)
-netz.add("Bus", "Bus2", v_nom=110)
+# Zeithorizont setzen
+netz.set_snapshots(lastdaten.index)
 
-netz.add("Line", "Leitung", bus0="Bus1", bus1="Bus2", r=0.01, x=0.05, s_nom=100)
+# Zwei Hochspannungs-Busse hinzufügen
+netz.add("Bus", "Knoten_1", v_nom=110)
+netz.add("Bus", "Knoten_2", v_nom=110)
 
-netz.add("Load", "Last", bus="Bus2", p_set=60)
-netz.add("Generator", "Gen", bus="Bus1", p_set=60)
+# Leitung zwischen den Knoten (geschätzt: 10 km, grobe technische Werte)
+netz.add("Line", "Leitung_K1_K2",
+         bus0="Knoten_1",
+         bus1="Knoten_2",
+         r=0.01,      # Ohm
+         x=0.1,       # Reaktanz in Ohm
+         s_nom=1000)  # Scheinleistung in MVA
 
-netz.lpf()
+# Last an beiden Knoten hinzufügen
+netz.add("Load", "Last_K1", bus="Knoten_1", p_set=lastdaten["Last_Knoten_1"])
+netz.add("Load", "Last_K2", bus="Knoten_2", p_set=lastdaten["Last_Knoten_2"])
 
-print("Leitungsfluss:")
-print(netz.lines_t.p0)
+# Slack-Generator am Knoten_1 zur Bilanzierung
+netz.add("Generator", "SlackGen", bus="Knoten_1", p_nom=1e6, control="Slack")
+
+# Nichtlinearer Lastfluss (AC) berechnen
+netz.pf()
+
+# Ergebnis anzeigen
+print("\n Netzmodell erfolgreich berechnet!\n")
+print("Leistungsfluss durch Leitung:")
+print(netz.lines_t.p0.head())
