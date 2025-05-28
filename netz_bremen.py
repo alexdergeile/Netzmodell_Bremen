@@ -37,7 +37,7 @@ netz.add("Load", "Last_K2", bus="Knoten_2", p_set=lastdaten["Last_Knoten_2"])
 # Slack-Generator
 netz.add("Generator", "SlackGen", bus="Knoten_1", p_nom=1e6, control="Slack")
 
-# Fiktive Generatoren mit Koordinaten
+# Fiktive test-Generatoren mit Koordinaten
 generatoren = [
     {"name": "Gen_A", "lat": 53.12, "lon": 8.84, "p_nom": 0.05},
     {"name": "Gen_B", "lat": 53.04, "lon": 8.81, "p_nom": 0.075},
