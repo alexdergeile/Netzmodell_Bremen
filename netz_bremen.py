@@ -64,5 +64,4 @@ netz.lines_t.p0.to_csv("Ergebnisse/Leitungsfluss.csv")
 netz.generators_t.p.to_csv("Ergebnisse/Generatorenleistung.csv")
 
 print("\n Netzmodell erfolgreich berechnet!\n")
-print("Leistungsfluss durch Leitung:")
-print(netz.lines_t.p0.head())
+print("CSV Dateien im Ordner Ergebnisse erstellt!")
