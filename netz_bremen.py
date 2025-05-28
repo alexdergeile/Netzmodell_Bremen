@@ -14,8 +14,8 @@ netz.set_snapshots(lastdaten.index)
 
 # Koordinaten der Busse
 knoten_koordinaten = {
-    "Knoten_1": (53.15, 8.85),  # Bremen Nord
-    "Knoten_2": (53.05, 8.80)   # Bremen Süd
+    "Knoten_1": (53.14, 8.85),  # Bremen Nord
+    "Knoten_2": (53.02, 8.80)   # Bremen Süd
 }
 
 # Busse mit Koordinaten
@@ -39,9 +39,9 @@ netz.add("Generator", "SlackGen", bus="Knoten_1", p_nom=1e6, control="Slack")
 
 # Fiktive Generatoren mit Koordinaten
 generatoren = [
-    {"name": "Gen_A", "lat": 53.12, "lon": 8.84, "p_nom": 50},
-    {"name": "Gen_B", "lat": 53.04, "lon": 8.81, "p_nom": 75},
-    {"name": "Gen_C", "lat": 53.10, "lon": 8.83, "p_nom": 100}
+    {"name": "Gen_A", "lat": 53.12, "lon": 8.84, "p_nom": 0.05},
+    {"name": "Gen_B", "lat": 53.04, "lon": 8.81, "p_nom": 0.075},
+    {"name": "Gen_C", "lat": 53.10, "lon": 8.83, "p_nom": 0.1}
 ]
 
 # Funktion zur Knoten-Zuordnung per Entfernung
@@ -57,6 +57,11 @@ for gen in generatoren:
 # Netzberechnung
 netz.pf()
 
+# leistungsfluss durch Leitung in csv
+netz.lines_t.p0.to_csv("Ergebnisse/Leitungsfluss.csv")
+
+# Generator-Leistungen in csv
+netz.generators_t.p.to_csv("Ergebnisse/Generatorenleistung.csv")
 
 print("\n Netzmodell erfolgreich berechnet!\n")
 print("Leistungsfluss durch Leitung:")
