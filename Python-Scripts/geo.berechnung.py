@@ -2,9 +2,9 @@ import pandas as pd
 from geopy.distance import geodesic
 
 #  Pfade 
-generatoren_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/Daten für Projekt/Generators.csv + einspeiseprofile/generators_aggregated.csv"
-buses_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/Daten für Projekt/Knoten+Leitungen (important)/pypsa_substations_110kV_filtered_cleaned.csv"
-ausgabe_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/Daten für Projekt/Generators.csv + einspeiseprofile/generators_with_bus.csv"
+generatoren_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/pypsa-env/Netz_modell/Daten für Projekt/Generators.csv + einspeiseprofile/generators_aggregated.csv"
+buses_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/pypsa-env/Netz_modell/Daten für Projekt/Knoten+Leitungen (important)/pypsa_substations_110kV_filtered_cleaned.csv"
+ausgabe_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/pypsa-env/Netz_modell/Daten für Projekt/Generators.csv + einspeiseprofile/generators_with_bus.csv"
 
 #  CSVs laden 
 gen_df = pd.read_csv(generatoren_pfad)
