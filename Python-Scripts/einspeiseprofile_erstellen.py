@@ -41,11 +41,11 @@ for malo in malos:
             profile_dict[f"Gen_{malo}"] = df["mw"]
         else:
             fehlerhafte_dateien.append(malo)
-            print(f"⚠️ Unerwartete Spalten in Datei {malo}: {list(df.columns)}")
+            print(f"Unerwartete Spalten in Datei {malo}: {list(df.columns)}")
 
     except Exception as e:
         fehlerhafte_dateien.append(malo)
-        print(f"❌ Fehler beim Verarbeiten von {malo}: {e}")
+        print(f"Fehler beim Verarbeiten von {malo}: {e}")
 
 # Alles zusammenführen zu einem DataFrame
 gesamtprofil = pd.DataFrame(profile_dict)
@@ -54,14 +54,14 @@ gesamtprofil.rename(columns={"snapshot": "snapshot"}, inplace=True)
 
 # Speichern
 gesamtprofil.to_csv(output_p, index=False)
-print(f"\n✅ generators-p.csv erfolgreich gespeichert unter:\n{output_p}")
+print(f"\n generators-p.csv erfolgreich gespeichert unter:\n{output_p}")
 
 # Zusammenfassung
-print("\n📋 Zusammenfassung:")
-print(f"❌ Fehlende Dateien: {len(fehlende_dateien)}")
+print("\n Zusammenfassung:")
+print(f"Fehlende Dateien: {len(fehlende_dateien)}")
 if fehlende_dateien:
-    print("  ➤", ", ".join(fehlende_dateien[:10]) + ("..." if len(fehlende_dateien) > 10 else ""))
+    print("  ->", ", ".join(fehlende_dateien[:10]) + ("..." if len(fehlende_dateien) > 10 else ""))
 
-print(f"⚠️ Fehlerhafte Dateien: {len(fehlerhafte_dateien)}")
+print(f"Fehlerhafte Dateien: {len(fehlerhafte_dateien)}")
 if fehlerhafte_dateien:
-    print("  ➤", ", ".join(fehlerhafte_dateien[:10]) + ("..." if len(fehlerhafte_dateien) > 10 else ""))
+    print("  ->", ", ".join(fehlerhafte_dateien[:10]) + ("..." if len(fehlerhafte_dateien) > 10 else ""))

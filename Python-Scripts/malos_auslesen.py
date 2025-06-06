@@ -7,7 +7,7 @@ ordner_pfad = "/home/slatty/Uni/M.Sc/Master SEM III/Masterprojekt/PyPSA/Lastgän
 # Liste aller .csv-Dateien im Ordner
 dateien = [f for f in os.listdir(ordner_pfad) if f.endswith(".csv")]
 
-# Extrahiere die Malo aus dem Dateinamen (alles vor .csv)
+# Extrahiere die Malo aus dem Dateinamen
 malos = [os.path.splitext(f)[0] for f in dateien]
 
 # Erstelle ein DataFrame

@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-# Aktueller Ordner (dort, wo das Skript liegt)
+# Aktueller Ordner
 ordner = os.path.dirname(__file__)
 
 # Pfad zur originalen generators.csv
@@ -10,7 +10,7 @@ eingabe_pfad = os.path.join(ordner, "generators.csv")
 # CSV einlesen
 df = pd.read_csv(eingabe_pfad)
 
-# Gruppierung nach 'name' (z. B. Gen_51402672129)
+# Gruppierung nach 'name'
 aggregiert = df.groupby("name").agg({
     "p_nom": "sum",
     "type": "first",
