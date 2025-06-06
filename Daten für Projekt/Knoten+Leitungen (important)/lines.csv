@@ -1,0 +1,35 @@
+name,bus0,bus1,length_km,r,x,s_nom
+Line_Farge_Bremen/Nord,Farge,Bremen/Nord,2.554,0.0766,1.0218,150
+Line_Bremen/Nord_Rönnebeck,Bremen/Nord,Rönnebeck,0.625,0.0187,0.2498,150
+Line_Rönnebeck_Blumenthal,Rönnebeck,Blumenthal,2.11,0.0633,0.8439,150
+Line_Blumenthal_Vulkan,Blumenthal,Vulkan,1.515,0.0454,0.606,150
+Line_Vulkan_UW Lesum,Vulkan,UW Lesum,6.464,0.1939,2.5856,150
+Line_Vulkan_Grambke,Vulkan,Grambke,8.8,0.264,3.5202,150
+Line_Vulkan_Vegesack,Vulkan,Vegesack,2.414,0.0724,0.9656,150
+Line_Vulkan_Gröpelingen,Vulkan,Gröpelingen,12.94,0.3882,5.1762,150
+Line_Vulkan_UW Oslebshausen,Vulkan,UW Oslebshausen,10.247,0.3074,4.0987,150
+Line_UW Lesum_UW Oslebshausen,UW Lesum,UW Oslebshausen,5.059,0.1518,2.0238,150
+Line_UW Oslebshausen_Gröpelingen,UW Oslebshausen,Gröpelingen,2.784,0.0835,1.1135,150
+Line_Gröpelingen_Umspannwerk Plantage,Gröpelingen,Umspannwerk Plantage,3.961,0.1188,1.5843,150
+Line_Gröpelingen_Blockland,Gröpelingen,Blockland,4.147,0.1244,1.6586,150
+Line_Gröpelingen_Neuenland,Gröpelingen,Neuenland,5.574,0.1672,2.2297,150
+Line_Vegesack_Grambke,Vegesack,Grambke,6.514,0.1954,2.6057,150
+Line_UW Lesum_Grambke,UW Lesum,Grambke,3.646,0.1094,1.4585,150
+Line_Grambke_Grambke 2,Grambke,Grambke 2,0.407,0.0122,0.1627,150
+Line_Grambke_Kraftwerk Hafen,Grambke,Kraftwerk Hafen,1.797,0.0539,0.7189,150
+Line_Grambke_Mittelsbüren,Grambke,Mittelsbüren,2.511,0.0753,1.0046,150
+Line_Grambke_Niedervieland,Grambke,Niedervieland,5.375,0.1613,2.15,150
+Line_Niedervieland_Mittelsbüren,Niedervieland,Mittelsbüren,4.311,0.1293,1.7245,150
+Line_Grambke_Blockland,Grambke,Blockland,7.898,0.2369,3.1592,150
+Line_Umspannwerk Plantage_Blockland,Umspannwerk Plantage,Blockland,2.331,0.0699,0.9325,150
+Line_Umspannwerk Plantage_Neuenland,Umspannwerk Plantage,Neuenland,3.081,0.0924,1.2325,150
+Line_Neuenland_Warturm,Neuenland,Warturm,1.568,0.0471,0.6274,150
+Line_Warturm_Warturm 2,Warturm,Warturm 2,0.875,0.0262,0.3499,150
+Line_Warturm_Niedervieland,Warturm,Niedervieland,5.231,0.1569,2.0924,150
+Line_Warturm_Huchting,Warturm,Huchting,2.341,0.0702,0.9364,150
+Line_Umspannwerk Süd_Umspannwerk Lange Wieren,Umspannwerk Süd,Umspannwerk Lange Wieren,4.433,0.133,1.7734,150
+Line_Umspannwerk Süd_Kraftwerk Vahr,Umspannwerk Süd,Kraftwerk Vahr,5.893,0.1768,2.3574,150
+Line_Umspannwerk Lange Wieren_Kraftwerk Vahr,Umspannwerk Lange Wieren,Kraftwerk Vahr,5.087,0.1526,2.0347,150
+Line_Kraftwerk Vahr_UW Kirchbachstraße,Kraftwerk Vahr,UW Kirchbachstraße,2.202,0.0661,0.8809,150
+Line_UW Kirchbachstraße_Umspannwerk Plantage,UW Kirchbachstraße,Umspannwerk Plantage,3.157,0.0947,1.2629,150
+Line_UW Kirchbachstraße_Blockland,UW Kirchbachstraße,Blockland,3.308,0.0992,1.3231,150
